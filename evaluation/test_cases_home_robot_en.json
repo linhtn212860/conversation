@@ -1,0 +1,660 @@
+{
+    "metadata": {
+        "description": "Comprehensive English test cases for home robot evaluation - Qwen3-8B",
+        "language": "EN",
+        "difficulty_levels": [
+            "easy",
+            "medium",
+            "hard"
+        ],
+        "categories": [
+            "education_tutoring",
+            "casual_chat",
+            "emotional_support",
+            "storytelling",
+            "news_weather",
+            "news_economy",
+            "news_politics",
+            "cooking_advice",
+            "health_care",
+            "beauty_tips",
+            "daily_family_activities"
+        ],
+        "total_cases": 100
+    },
+    "test_cases": [
+        {
+            "section": "=== EDUCATION & TUTORING (Robot teaching children) ==="
+        },
+        {
+            "id": 1,
+            "category": "education_tutoring",
+            "level": "easy",
+            "question": "What is 7 times 8?"
+        },
+        {
+            "id": 2,
+            "category": "education_tutoring",
+            "level": "easy",
+            "question": "How do you spell 'beautiful'?"
+        },
+        {
+            "id": 3,
+            "category": "education_tutoring",
+            "level": "easy",
+            "question": "What color do you get when you mix red and blue?"
+        },
+        {
+            "id": 4,
+            "category": "education_tutoring",
+            "level": "easy",
+            "question": "Can you count from 1 to 20 with me?"
+        },
+        {
+            "id": 5,
+            "category": "education_tutoring",
+            "level": "medium",
+            "question": "My son is learning fractions. Can you explain what 1/2 means in a simple way?"
+        },
+        {
+            "id": 6,
+            "category": "education_tutoring",
+            "level": "medium",
+            "question": "Help my daughter practice past tense. Give her 5 sentences to complete."
+        },
+        {
+            "id": 7,
+            "category": "education_tutoring",
+            "level": "medium",
+            "question": "What are the planets in our solar system? My kid has a test tomorrow."
+        },
+        {
+            "id": 8,
+            "category": "education_tutoring",
+            "level": "medium",
+            "question": "Explain photosynthesis to a 10-year-old."
+        },
+        {
+            "id": 9,
+            "category": "education_tutoring",
+            "level": "hard",
+            "question": "My teenager is struggling with quadratic equations. Can you walk through solving x² + 5x + 6 = 0?"
+        },
+        {
+            "id": 10,
+            "category": "education_tutoring",
+            "level": "hard",
+            "question": "Help my son prepare for his history essay about World War II causes."
+        },
+        {
+            "section": "=== CASUAL CHAT & CONVERSATION ==="
+        },
+        {
+            "id": 11,
+            "category": "casual_chat",
+            "level": "easy",
+            "question": "Hey, what's up?"
+        },
+        {
+            "id": 12,
+            "category": "casual_chat",
+            "level": "easy",
+            "question": "Good morning! How are you today?"
+        },
+        {
+            "id": 13,
+            "category": "casual_chat",
+            "level": "easy",
+            "question": "I'm bored. Talk to me."
+        },
+        {
+            "id": 14,
+            "category": "casual_chat",
+            "level": "easy",
+            "question": "What's your favorite color?"
+        },
+        {
+            "id": 15,
+            "category": "casual_chat",
+            "level": "medium",
+            "question": "Do you think robots will replace humans in the future?"
+        },
+        {
+            "id": 16,
+            "category": "casual_chat",
+            "level": "medium",
+            "question": "If you could go anywhere in the world, where would you go?"
+        },
+        {
+            "id": 17,
+            "category": "casual_chat",
+            "level": "medium",
+            "question": "What do you think about social media these days?"
+        },
+        {
+            "id": 18,
+            "category": "casual_chat",
+            "level": "hard",
+            "question": "Sometimes I wonder what the meaning of life is. What do you think?"
+        },
+        {
+            "id": 19,
+            "category": "casual_chat",
+            "level": "hard",
+            "question": "Do you believe in fate or free will?"
+        },
+        {
+            "id": 20,
+            "category": "casual_chat",
+            "level": "hard",
+            "question": "What makes someone a good person?"
+        },
+        {
+            "section": "=== EMOTIONAL SUPPORT & MENTAL WELLNESS ==="
+        },
+        {
+            "id": 21,
+            "category": "emotional_support",
+            "level": "easy",
+            "question": "I'm feeling a bit tired today."
+        },
+        {
+            "id": 22,
+            "category": "emotional_support",
+            "level": "easy",
+            "question": "Today was a good day!"
+        },
+        {
+            "id": 23,
+            "category": "emotional_support",
+            "level": "easy",
+            "question": "I'm so happy, I got a promotion!"
+        },
+        {
+            "id": 24,
+            "category": "emotional_support",
+            "level": "medium",
+            "question": "I had a fight with my best friend. I don't know what to do."
+        },
+        {
+            "id": 25,
+            "category": "emotional_support",
+            "level": "medium",
+            "question": "I'm stressed about my job. The workload is too much."
+        },
+        {
+            "id": 26,
+            "category": "emotional_support",
+            "level": "medium",
+            "question": "My mom is sick and I'm really worried about her."
+        },
+        {
+            "id": 27,
+            "category": "emotional_support",
+            "level": "medium",
+            "question": "I feel like nobody understands me sometimes."
+        },
+        {
+            "id": 28,
+            "category": "emotional_support",
+            "level": "hard",
+            "question": "I've been feeling really lonely lately, even when I'm with people."
+        },
+        {
+            "id": 29,
+            "category": "emotional_support",
+            "level": "hard",
+            "question": "My father passed away last month. I still can't believe he's gone."
+        },
+        {
+            "id": 30,
+            "category": "emotional_support",
+            "level": "hard",
+            "question": "I'm going through a divorce and it's affecting my kids. How do I help them?"
+        },
+        {
+            "section": "=== STORYTELLING ==="
+        },
+        {
+            "id": 31,
+            "category": "storytelling",
+            "level": "easy",
+            "question": "Tell me a short bedtime story for my 4-year-old."
+        },
+        {
+            "id": 32,
+            "category": "storytelling",
+            "level": "easy",
+            "question": "Can you tell a funny story about a silly cat?"
+        },
+        {
+            "id": 33,
+            "category": "storytelling",
+            "level": "easy",
+            "question": "Tell me a story about a brave princess."
+        },
+        {
+            "id": 34,
+            "category": "storytelling",
+            "level": "medium",
+            "question": "Create a story about a robot who wants to be human."
+        },
+        {
+            "id": 35,
+            "category": "storytelling",
+            "level": "medium",
+            "question": "Tell a mystery story suitable for my 8-year-old."
+        },
+        {
+            "id": 36,
+            "category": "storytelling",
+            "level": "medium",
+            "question": "Make up a story about two siblings going on an adventure."
+        },
+        {
+            "id": 37,
+            "category": "storytelling",
+            "level": "hard",
+            "question": "Tell an interactive story where I can make choices. Start with a hero in a forest."
+        },
+        {
+            "id": 38,
+            "category": "storytelling",
+            "level": "hard",
+            "question": "Create a story with a moral lesson about honesty for my teenager."
+        },
+        {
+            "section": "=== NEWS & UPDATES - WEATHER ==="
+        },
+        {
+            "id": 39,
+            "category": "news_weather",
+            "level": "easy",
+            "question": "What's the weather like today?"
+        },
+        {
+            "id": 40,
+            "category": "news_weather",
+            "level": "easy",
+            "question": "Do I need an umbrella today?"
+        },
+        {
+            "id": 41,
+            "category": "news_weather",
+            "level": "easy",
+            "question": "Is it going to rain this weekend?"
+        },
+        {
+            "id": 42,
+            "category": "news_weather",
+            "level": "medium",
+            "question": "What should we wear for our picnic tomorrow?"
+        },
+        {
+            "id": 43,
+            "category": "news_weather",
+            "level": "medium",
+            "question": "Is it a good day for outdoor activities with the kids?"
+        },
+        {
+            "id": 44,
+            "category": "news_weather",
+            "level": "hard",
+            "question": "We're planning a beach trip next week. What's the weather forecast?"
+        },
+        {
+            "section": "=== NEWS & UPDATES - ECONOMY ==="
+        },
+        {
+            "id": 45,
+            "category": "news_economy",
+            "level": "easy",
+            "question": "How is the stock market doing today?"
+        },
+        {
+            "id": 46,
+            "category": "news_economy",
+            "level": "easy",
+            "question": "What's the price of gold right now?"
+        },
+        {
+            "id": 47,
+            "category": "news_economy",
+            "level": "medium",
+            "question": "Should I invest in real estate or stocks right now?"
+        },
+        {
+            "id": 48,
+            "category": "news_economy",
+            "level": "medium",
+            "question": "What's happening with inflation? Is it getting better?"
+        },
+        {
+            "id": 49,
+            "category": "news_economy",
+            "level": "hard",
+            "question": "Explain the current economic situation and how it might affect my family's savings."
+        },
+        {
+            "id": 50,
+            "category": "news_economy",
+            "level": "hard",
+            "question": "What are some safe investment options for someone retiring in 10 years?"
+        },
+        {
+            "section": "=== NEWS & UPDATES - POLITICS ==="
+        },
+        {
+            "id": 51,
+            "category": "news_politics",
+            "level": "easy",
+            "question": "What's happening in the news today?"
+        },
+        {
+            "id": 52,
+            "category": "news_politics",
+            "level": "easy",
+            "question": "Are there any important news I should know about?"
+        },
+        {
+            "id": 53,
+            "category": "news_politics",
+            "level": "medium",
+            "question": "What's the latest on the upcoming elections?"
+        },
+        {
+            "id": 54,
+            "category": "news_politics",
+            "level": "medium",
+            "question": "Can you summarize today's top headlines?"
+        },
+        {
+            "id": 55,
+            "category": "news_politics",
+            "level": "hard",
+            "question": "What's your opinion on the current government policies?"
+        },
+        {
+            "id": 56,
+            "category": "news_politics",
+            "level": "hard",
+            "question": "How do international relations affect our daily lives?"
+        },
+        {
+            "section": "=== COOKING ADVICE ==="
+        },
+        {
+            "id": 57,
+            "category": "cooking_advice",
+            "level": "easy",
+            "question": "How long do I boil an egg?"
+        },
+        {
+            "id": 58,
+            "category": "cooking_advice",
+            "level": "easy",
+            "question": "What temperature should I bake chicken at?"
+        },
+        {
+            "id": 59,
+            "category": "cooking_advice",
+            "level": "easy",
+            "question": "How do I make scrambled eggs?"
+        },
+        {
+            "id": 60,
+            "category": "cooking_advice",
+            "level": "medium",
+            "question": "What can I cook with chicken, rice, and broccoli?"
+        },
+        {
+            "id": 61,
+            "category": "cooking_advice",
+            "level": "medium",
+            "question": "Give me a quick dinner recipe for a busy weeknight."
+        },
+        {
+            "id": 62,
+            "category": "cooking_advice",
+            "level": "medium",
+            "question": "How do I make homemade pizza dough?"
+        },
+        {
+            "id": 63,
+            "category": "cooking_advice",
+            "level": "medium",
+            "question": "What's a healthy lunch idea for kids?"
+        },
+        {
+            "id": 64,
+            "category": "cooking_advice",
+            "level": "hard",
+            "question": "My husband is diabetic. What desserts can he eat?"
+        },
+        {
+            "id": 65,
+            "category": "cooking_advice",
+            "level": "hard",
+            "question": "Plan a week of healthy meals for a family of four on a budget."
+        },
+        {
+            "id": 66,
+            "category": "cooking_advice",
+            "level": "hard",
+            "question": "How do I prepare a special anniversary dinner at home?"
+        },
+        {
+            "section": "=== HEALTH CARE ==="
+        },
+        {
+            "id": 67,
+            "category": "health_care",
+            "level": "easy",
+            "question": "I have a headache. What should I do?"
+        },
+        {
+            "id": 68,
+            "category": "health_care",
+            "level": "easy",
+            "question": "How much water should I drink daily?"
+        },
+        {
+            "id": 69,
+            "category": "health_care",
+            "level": "easy",
+            "question": "What's good for a sore throat?"
+        },
+        {
+            "id": 70,
+            "category": "health_care",
+            "level": "medium",
+            "question": "My child has a fever of 101°F. Should I take her to the doctor?"
+        },
+        {
+            "id": 71,
+            "category": "health_care",
+            "level": "medium",
+            "question": "How can I improve my sleep quality?"
+        },
+        {
+            "id": 72,
+            "category": "health_care",
+            "level": "medium",
+            "question": "What exercises are good for back pain?"
+        },
+        {
+            "id": 73,
+            "category": "health_care",
+            "level": "medium",
+            "question": "How do I know if I'm eating enough vitamins?"
+        },
+        {
+            "id": 74,
+            "category": "health_care",
+            "level": "hard",
+            "question": "My elderly mother has high blood pressure. What lifestyle changes should she make?"
+        },
+        {
+            "id": 75,
+            "category": "health_care",
+            "level": "hard",
+            "question": "I'm feeling anxious all the time. What can I do without medication?"
+        },
+        {
+            "id": 76,
+            "category": "health_care",
+            "level": "hard",
+            "question": "How do I help my overweight child develop healthy habits without hurting their self-esteem?"
+        },
+        {
+            "section": "=== BEAUTY TIPS ==="
+        },
+        {
+            "id": 77,
+            "category": "beauty_tips",
+            "level": "easy",
+            "question": "How often should I wash my hair?"
+        },
+        {
+            "id": 78,
+            "category": "beauty_tips",
+            "level": "easy",
+            "question": "What's the best way to remove makeup?"
+        },
+        {
+            "id": 79,
+            "category": "beauty_tips",
+            "level": "easy",
+            "question": "How do I prevent dry skin in winter?"
+        },
+        {
+            "id": 80,
+            "category": "beauty_tips",
+            "level": "medium",
+            "question": "What's a good skincare routine for oily skin?"
+        },
+        {
+            "id": 81,
+            "category": "beauty_tips",
+            "level": "medium",
+            "question": "How can I reduce dark circles under my eyes?"
+        },
+        {
+            "id": 82,
+            "category": "beauty_tips",
+            "level": "medium",
+            "question": "What hairstyle would suit my daughter for her graduation?"
+        },
+        {
+            "id": 83,
+            "category": "beauty_tips",
+            "level": "hard",
+            "question": "I'm 45 and noticing more wrinkles. What anti-aging routine do you recommend?"
+        },
+        {
+            "id": 84,
+            "category": "beauty_tips",
+            "level": "hard",
+            "question": "How do I create a natural makeup look for a job interview?"
+        },
+        {
+            "section": "=== DAILY FAMILY ACTIVITIES ==="
+        },
+        {
+            "id": 85,
+            "category": "daily_family_activities",
+            "level": "easy",
+            "question": "What time is it?"
+        },
+        {
+            "id": 86,
+            "category": "daily_family_activities",
+            "level": "easy",
+            "question": "Remind me to pick up the kids at 3 PM."
+        },
+        {
+            "id": 87,
+            "category": "daily_family_activities",
+            "level": "easy",
+            "question": "Turn off the lights in the living room."
+        },
+        {
+            "id": 88,
+            "category": "daily_family_activities",
+            "level": "easy",
+            "question": "Set an alarm for 6:30 AM tomorrow."
+        },
+        {
+            "id": 89,
+            "category": "daily_family_activities",
+            "level": "medium",
+            "question": "Help me plan my family's schedule for next week."
+        },
+        {
+            "id": 90,
+            "category": "daily_family_activities",
+            "level": "medium",
+            "question": "What activities can we do at home on a rainy day?"
+        },
+        {
+            "id": 91,
+            "category": "daily_family_activities",
+            "level": "medium",
+            "question": "My kids are fighting again. How do I handle sibling rivalry?"
+        },
+        {
+            "id": 92,
+            "category": "daily_family_activities",
+            "level": "medium",
+            "question": "How do I get my teenager to help with chores?"
+        },
+        {
+            "id": 93,
+            "category": "daily_family_activities",
+            "level": "medium",
+            "question": "Suggest some fun weekend activities for family bonding."
+        },
+        {
+            "id": 94,
+            "category": "daily_family_activities",
+            "level": "hard",
+            "question": "How do I balance work from home and taking care of my toddler?"
+        },
+        {
+            "id": 95,
+            "category": "daily_family_activities",
+            "level": "hard",
+            "question": "My mother-in-law moved in with us and there's tension. Any advice?"
+        },
+        {
+            "id": 96,
+            "category": "daily_family_activities",
+            "level": "hard",
+            "question": "How do I talk to my kids about setting screen time limits?"
+        },
+        {
+            "id": 97,
+            "category": "daily_family_activities",
+            "level": "hard",
+            "question": "We're moving to a new city. How do I help my children adjust?"
+        },
+        {
+            "id": 98,
+            "category": "daily_family_activities",
+            "level": "hard",
+            "question": "How do I create a family budget that everyone follows?"
+        },
+        {
+            "id": 99,
+            "category": "daily_family_activities",
+            "level": "hard",
+            "question": "My spouse and I have different parenting styles. How do we find common ground?"
+        },
+        {
+            "id": 100,
+            "category": "daily_family_activities",
+            "level": "hard",
+            "question": "How do I prepare my child for starting kindergarten next month?"
+        }
+    ]
+}
