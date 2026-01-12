@@ -13,20 +13,22 @@ MODELS_DIR = BASE_DIR / "models"
 QWEN_MODEL_PATH = MODELS_DIR / "Qwen_Qwen3-8B"
 SILERO_VAD_REPO = "snakers4/silero-vad"
 
-# ASR Model - Conformer (NeMo or similar)
-ASR_MODEL_TYPE = "conformer"
-CONFORMER_MODEL_NAME = "nvidia/stt_en_conformer_ctc_large"  # NeMo Conformer model
+# ASR Model - Whisper Large V3 Turbo
+ASR_MODEL_TYPE = "whisper"
+WHISPER_MODEL_NAME = "large-v3-turbo"  # Whisper Large V3 Turbo (OpenAI)
 # Options:
-# - nvidia/stt_en_conformer_ctc_small
-# - nvidia/stt_en_conformer_ctc_medium
-# - nvidia/stt_en_conformer_ctc_large (CURRENT)
+# - large-v3-turbo (CURRENT - 6x faster than large-v3, 809M params, WER ~7.4%)
+# - large-v3 (highest accuracy, but slower)
+# - medium (balanced, good for most use cases)
+# - small (fast, lower accuracy)
+# Note: Using faster-whisper for optimized inference
 
-# TTS Model - VITS
-TTS_MODEL_TYPE = "vits"
-VITS_MODEL_NAME = "facebook/mms-tts-eng"  # VITS-based English TTS
+# TTS Model - Kokoro
+TTS_MODEL_TYPE = "kokoro"
+TTS_MODEL_NAME = "hexgrad/Kokoro-82M"  # Kokoro-82M - Fast and lightweight TTS
 # Options:
-# - facebook/mms-tts-eng (Massively Multilingual Speech)
-# - Custom VITS checkpoint
+# - hexgrad/Kokoro-82M (CURRENT - 82M params, fast)
+# - facebook/mms-tts-eng (VITS-based, multilingual)
 
 # =============================================================================
 # AUDIO SETTINGS
@@ -52,15 +54,15 @@ ASR_LANGUAGE = "en"  # English
 # =============================================================================
 # LLM SETTINGS (Qwen3-8B)
 # =============================================================================
-LLM_MAX_NEW_TOKENS = 1024  # Lower for faster response
+LLM_MAX_NEW_TOKENS = 512  # Lower for faster response in real-time conversation
 LLM_TEMPERATURE = 0.7
 LLM_TOP_P = 0.9
-LLM_USE_4BIT = False  # Set to True if limited VRAM
+LLM_USE_4BIT = True  # Set to True if limited VRAM
 
 # =============================================================================
-# TTS SETTINGS (VITS)
+# TTS SETTINGS (Kokoro)
 # =============================================================================
-TTS_OUTPUT_SAMPLE_RATE = 16000  # VITS output sample rate
+TTS_OUTPUT_SAMPLE_RATE = 24000  # Kokoro output sample rate (24kHz)
 TTS_RATE = "+0%"  # Speech rate (can be +20% or -20% for faster/slower)
 
 # =============================================================================

@@ -11,7 +11,7 @@ from enum import Enum
 import time
 
 from .vad import SileroVAD, VADIterator
-from .asr import WhisperASR
+from .asr import ConformerASR
 from .llm import QwenLLM
 from .tts import EnglishTTS
 from .config import SAMPLE_RATE, TTS_OUTPUT_SAMPLE_RATE
@@ -93,10 +93,10 @@ class SpeechToSpeechPipeline:
         return self._vad
     
     @property
-    def asr(self) -> WhisperASR:
+    def asr(self) -> ConformerASR:
         """Lazy load ASR."""
         if self._asr is None:
-            self._asr = WhisperASR(device=self.device)
+            self._asr = ConformerASR(device=self.device)
         return self._asr
     
     @property
@@ -240,7 +240,7 @@ class SpeechToSpeechPipeline:
         
         # Step 1: ASR
         transcription = self.asr.transcribe(audio)
-        
+
         if self.on_transcription:
             self.on_transcription(transcription)
         

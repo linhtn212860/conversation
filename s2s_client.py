@@ -320,6 +320,9 @@ class S2SClient:
         console.log("")
         console.log("[cyan]🎤 Listening...[/cyan]")
 
+        # Track mic mute state for clean logging
+        mic_was_muted = False
+
         try:
             with sd.InputStream(
                 samplerate=SAMPLE_RATE,
@@ -333,9 +336,30 @@ class S2SClient:
                     # Get audio from queue asynchronously
                     audio_chunk = await audio_queue.get()
 
-                    # Suppress when playing
+                    # ============================================================
+                    # MIC MUTE LOGIC: Tắt mic khi robot đang nói
+                    # ============================================================
                     if self.player.is_suppressing:
-                        audio_chunk = audio_chunk * 0.1
+                        # Robot đang phát audio -> Tắt mic hoàn toàn
+                        if not mic_was_muted:
+                            console.log("[magenta]🔇 Mic muted (robot speaking...)[/magenta]")
+                            mic_was_muted = True
+                            # Reset VAD state để không bị dính câu cũ
+                            is_speaking = False
+                            audio_buffer = []
+                            silence_samples = 0
+                            self.vad.reset()
+                        # Bỏ qua hoàn toàn, không xử lý audio từ mic
+                        continue
+
+                    # Robot đã nói xong -> Bật lại mic
+                    if mic_was_muted:
+                        console.log("[green]🎤 Mic unmuted - Listening...[/green]")
+                        mic_was_muted = False
+
+                    # ============================================================
+                    # NORMAL PROCESSING: Xử lý audio khi mic đang bật
+                    # ============================================================
 
                     # VAD
                     speech_detected = self.vad.is_speech(audio_chunk)

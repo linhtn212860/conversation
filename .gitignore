@@ -22,52 +22,39 @@ wheels/
 
 # Virtual environments
 venv/
+ENV/
 env/
-.venv/
+.env
 
 # IDE
-.idea/
 .vscode/
+.idea/
 *.swp
 *.swo
-*~
-
-# Jupyter
-.ipynb_checkpoints/
 
 # Models and large files (download separately)
 models/
-DTLN-aec/
-*.bin
-*.pt
-*.onnx
+pretrained_models/
 *.safetensors
 *.ckpt
+*.bin
+*.onnx
+*.tflite
+*.pt
 *.pth
 
-# Audio files
+# Audio samples
+audio_samples/
 *.wav
 *.mp3
 *.flac
-recordings/
+
+# Claude settings
+.claude/
 
 # Logs
 *.log
-logs/
-
-# OS
-.DS_Store
-Thumbs.db
-
-# Environment variables
-.env
-.env.local
 
 # Temporary files
-tmp/
-temp/
 *.tmp
-
-# Claude/Gemini AI assistant
-.claude/
-.gemini/
+*.temp

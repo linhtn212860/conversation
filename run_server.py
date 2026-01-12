@@ -3,9 +3,27 @@
 Run Speech-to-Speech Server
 Entry point for the WebSocket API
 """
+import os
 import argparse
 import sys
 from pathlib import Path
+
+# Disable telemetry and unnecessary logging before any imports
+os.environ['NEMO_EXPM_VERSION'] = 'NEMO_LOGGER_DISABLED'
+os.environ['HYDRA_FULL_ERROR'] = '0'
+os.environ['TRANSFORMERS_NO_ADVISORY_WARNINGS'] = '1'
+
+# Suppress Python warnings
+import warnings
+warnings.filterwarnings('ignore')
+
+# Monkey patch torchaudio BEFORE any speechbrain imports
+try:
+    import torchaudio
+    if not hasattr(torchaudio, 'list_audio_backends'):
+        torchaudio.list_audio_backends = lambda: ["soundfile"]
+except ImportError:
+    pass
 
 # Add parent directory to path
 sys.path.insert(0, str(Path(__file__).parent))

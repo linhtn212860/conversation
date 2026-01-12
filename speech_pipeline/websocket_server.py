@@ -2,34 +2,34 @@
 WebSocket Server for Speech-to-Speech Pipeline
 Provides streaming API for real-time voice conversation
 """
-import asyncio
+import asyncio #framework async của Python. WebSocket sử dụng async để xử lý nhiều kết nối đồng thời mà không chặn luồng chính.
 import json
 import numpy as np
 import base64
 from typing import Optional
-from fastapi import FastAPI, WebSocket, WebSocketDisconnect
-from fastapi.middleware.cors import CORSMiddleware
+from fastapi import FastAPI, WebSocket, WebSocketDisconnect #
+from fastapi.middleware.cors import CORSMiddleware #cho phép cấu hình CORS (Cross-Origin Resource Sharing) để kiểm soát truy cập từ các nguồn khác nhau.
 import uvicorn
 
-from .pipeline import SpeechToSpeechPipeline, PipelineState
+from .pipeline import SpeechToSpeechPipeline, PipelineState 
 from .config import (
-    WS_HOST,
-    WS_PORT,
-    SAMPLE_RATE,
-    TTS_OUTPUT_SAMPLE_RATE,
-    CHUNK_SIZE
+    WS_HOST, #Địa chỉ máy chủ WebSocket.
+    WS_PORT, #Cổng máy chủ WebSocket.
+    SAMPLE_RATE, #Tốc độ mẫu âm thanh (số mẫu trên giây).
+    TTS_OUTPUT_SAMPLE_RATE, #Tốc độ mẫu đầu ra của mô hình TTS.
+    CHUNK_SIZE #Kích thước khối âm thanh được xử lý trong mỗi lần lặp.
 )
 
 
-app = FastAPI(title="Speech-to-Speech API")
+app = FastAPI(title="Speech-to-Speech API") #Tạo một ứng dụng FastAPI mới với tiêu đề "Speech-to-Speech API".
 
 # CORS
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
+app.add_middleware( # Thêm middleware CORS vào ứng dụng FastAPI để cho phép truy cập từ bất kỳ nguồn nào.
+    CORSMiddleware, # Middleware CORS cho phép kiểm soát truy cập từ các nguồn khác nhau.
+    allow_origins=["*"], # Cho phép tất cả các nguồn truy cập. 
+    allow_credentials=True, # Cho phép gửi thông tin xác thực (cookies, headers) trong các yêu cầu từ các nguồn khác.
+    allow_methods=["*"], # Cho phép tất cả các phương thức HTTP (GET, POST, PUT, DELETE, v.v.) từ các nguồn khác.
+    allow_headers=["*"], # Cho phép tất cả các headers trong các yêu cầu từ các nguồn khác.
 )
 
 # Global pipeline (shared across connections)

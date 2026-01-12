@@ -1,29 +1,32 @@
 """
-Conformer ASR (Automatic Speech Recognition) Wrapper
-Speech-to-text for English using NeMo Conformer-CTC
+Whisper ASR (Automatic Speech Recognition) Wrapper
+Speech-to-text for English using OpenAI Whisper Large V3 Turbo
 """
 import numpy as np
 from typing import Optional, Union
 import warnings
+import os
+
+# Disable all unnecessary logging and telemetry
 warnings.filterwarnings("ignore")
+os.environ['PYTHONWARNINGS'] = 'ignore'
 
-from .config import SAMPLE_RATE, ASR_MAX_AUDIO_LENGTH, CONFORMER_MODEL_NAME
+from .config import SAMPLE_RATE, ASR_MAX_AUDIO_LENGTH, WHISPER_MODEL_NAME
 
-
-class ConformerASR:
+class WhisperASR:
     """
-    Wrapper for NeMo Conformer-CTC ASR model.
+    Wrapper for OpenAI Whisper ASR model using faster-whisper.
 
-    Conformer combines:
-    - Convolution for local patterns
-    - Self-attention for global context
-    - CTC decoding for streaming capability
-    - Excellent accuracy and speed
+    Whisper Large V3 Turbo features:
+    - State-of-the-art accuracy (WER ~7.4%)
+    - 6x faster than Whisper Large V3
+    - 809M parameters (optimized)
+    - Excellent for English transcription
     """
 
     def __init__(self, device: str = "cuda"):
         """
-        Initialize Conformer ASR.
+        Initialize Whisper ASR.
 
         Args:
             device: "cuda" or "cpu"
@@ -31,34 +34,33 @@ class ConformerASR:
         self.device = device
         self.model = None
         self.sample_rate = SAMPLE_RATE
-        self.model_name = CONFORMER_MODEL_NAME
+        self.model_name = WHISPER_MODEL_NAME
 
         self._load_model()
 
     def _load_model(self):
-        """Load NeMo Conformer model."""
-        print(f"🔄 Loading Conformer ASR ({self.model_name})...")
+        """Load Whisper model using faster-whisper."""
+        print(f"Loading Whisper ASR ({self.model_name})...")
 
         try:
-            import nemo.collections.asr as nemo_asr
+            from faster_whisper import WhisperModel
 
-            # Load pretrained model from NGC
-            self.model = nemo_asr.models.EncDecCTCModel.from_pretrained(
-                model_name=self.model_name
+            # Load model with optimizations
+            # compute_type: int8 for speed, float16 for accuracy on GPU
+            compute_type = "float16" if self.device == "cuda" else "int8"
+
+            self.model = WhisperModel(
+                self.model_name,
+                device=self.device,
+                compute_type=compute_type,
+                download_root="pretrained_models/whisper"
             )
 
-            # Move to device
-            if self.device == "cuda":
-                self.model = self.model.cuda()
-            else:
-                self.model = self.model.cpu()
+            print(f"Whisper ASR loaded ({self.model_name})!")
 
-            self.model.eval()
-
-            print(f"✅ Conformer ASR loaded ({self.model_name})!")
-
-        except ImportError:
-            print("❌ NeMo not installed. Install with: pip install nemo_toolkit[asr]")
+        except ImportError as e:
+            print(f"faster-whisper not installed or import error: {e}")
+            print("Install with: pip install faster-whisper")
             raise
 
     def transcribe(self, audio: Union[np.ndarray, "torch.Tensor"], sr: int = None) -> str:
@@ -67,7 +69,7 @@ class ConformerASR:
 
         Args:
             audio: Audio data (float32, mono)
-            sr: Sample rate
+            sr: Sample rate (default: 16000 Hz)
 
         Returns:
             Transcribed text
@@ -92,26 +94,34 @@ class ConformerASR:
         if len(audio) > max_samples:
             audio = audio[:max_samples]
 
-        # NeMo expects audio as list of numpy arrays
-        # Transcribe with Conformer
-        import torch
-        with torch.no_grad():
-            # Transcribe - model.transcribe returns list of Hypothesis objects
-            transcriptions = self.model.transcribe(
-                audio=[audio],
-                batch_size=1
+        try:
+            # Transcribe using faster-whisper
+            # language="en" for English-only (faster)
+            # beam_size=5 for better accuracy (default: 5)
+            # vad_filter=True to filter out non-speech
+            segments, info = self.model.transcribe(
+                audio,
+                language="en",
+                beam_size=5,
+                vad_filter=True,
+                vad_parameters=dict(
+                    threshold=0.5,
+                    min_speech_duration_ms=250,
+                    min_silence_duration_ms=100
+                )
             )
 
-            if transcriptions and len(transcriptions) > 0:
-                # NeMo returns Hypothesis object, access .text attribute
-                hypothesis = transcriptions[0]
-                if hasattr(hypothesis, 'text'):
-                    return hypothesis.text.strip()
-                elif isinstance(hypothesis, str):
-                    return hypothesis.strip()
-                else:
-                    # Fallback - convert to string
-                    return str(hypothesis).strip()
+            # Collect all segments
+            text_parts = []
+            for segment in segments:
+                text_parts.append(segment.text)
+
+            # Join and clean
+            full_text = " ".join(text_parts).strip()
+            return full_text
+
+        except Exception as e:
+            print(f"Whisper transcription error: {e}")
             return ""
 
     def transcribe_streaming(self, audio_chunks: list, sr: int = None) -> str:
@@ -128,22 +138,23 @@ class ConformerASR:
         if len(audio_chunks) == 0:
             return ""
 
+        # Concatenate all chunks
         full_audio = np.concatenate(audio_chunks)
         return self.transcribe(full_audio, sr)
 
 
 # Alias for backward compatibility
-WhisperASR = ConformerASR
+ConformerASR = WhisperASR
 
 
 # Test function
 def test_asr():
-    """Test ASR with sample audio."""
-    print("Testing Conformer ASR...")
+    """Test Whisper ASR with sample audio."""
+    print("Testing Whisper Large V3 Turbo ASR...")
 
     # Initialize
     import torch
-    asr = ConformerASR(device="cuda" if torch.cuda.is_available() else "cpu")
+    asr = WhisperASR(device="cuda" if torch.cuda.is_available() else "cpu")
 
     # Create test audio (3 seconds of sine wave)
     t = np.linspace(0, 3, int(SAMPLE_RATE * 3))
@@ -152,7 +163,7 @@ def test_asr():
     # Transcribe
     text = asr.transcribe(test_audio)
     print(f"Transcription: '{text}'")
-    print("✅ Conformer ASR test complete!")
+    print("Whisper ASR test complete!")
 
 
 if __name__ == "__main__":
